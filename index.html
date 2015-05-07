@@ -7,8 +7,8 @@
 	<title>MadLibs</title>
 </head>
 <body>
-	<div class="container container-box">
-  	<header>
+	<div class="container"><!--main containter-->
+  	<header><!--Header -->
   		<div class="col-md-12 text-center">
 			<img src="img/mad-lib-happy-face.png" />
 			<img src="img/ng-mad-libs-logo.png" />
@@ -17,68 +17,100 @@
 		</div>
 	</header>
     
-    <div class="section" ng-controller="MainCtrl">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <form role="form">
+    <div class="section" ng-controller="MainCtrl"><!--Main Controller-->
+            <div class="container"><!--Inner Container-->
+                <div class="row"><!--Main Row-->
+                    <form name="mad" novalidate  ng-show="hideText"><!--Form-->
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <input class="form-control" ng-model="name"
-                                placeholder="Male Name" type="text">
+                                <input name="malename" class="form-control" ng-model="malename"
+                                placeholder="Male Name" type="text" required/>
+                                <span class="error" ng-show="mad.malename.$error.required">
+                                    Please enter a name
+                                </span>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" ng-model="jtitle"
-                                placeholder="Job title" type="text">
+                                <input name="jtitle" class="form-control" ng-model="jtitle"
+                                placeholder="Job title" type="text" required/>
+                                <span class="error" ng-show="mad.jtitle.$error.required">
+                                    Please enter a job title
+                                </span>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" ng-model="task1"
-                                placeholder="Tedious Task" type="text">
+                                <input name="task1" class="form-control" ng-model="task1"
+                                placeholder="Tedious Task" required/>
+                                <span class="error" ng-show="mad.task1.$error.required">
+                                    Please enter a tedious task
+                                </span>
                             </div>
-                        </form>
-                    </div>
-                    <div class="col-md-4">
-                        <form role="form">
+                        </div>
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <input class="form-control" ng-model="task2"
-                                placeholder="Dirty Task" type="text">
+                                <input name="task2" class="form-control" ng-model="task2"
+                                placeholder="Dirty Task" required />
+                                <span class="error" ng-show="mad.task2.$error.required">
+                                    Please enter a dirty task
+                                </span>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" ng-model="celebrity"
-                                placeholder="Celebrity" type="text">
+                                <input name="celebrity" class="form-control" ng-model="celebrity"
+                                placeholder="Celebrity" required/>
+                                <span class="error" ng-show="mad.celebrity.$error.required">
+                                    Please enter a celebrity name
+                                </span>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" ng-model="skill1"
-                                placeholder="Useless Skill" type="text">
+                                <input name="skill1" class="form-control" ng-model="skill1"
+                                placeholder="Useless Skill" required/>
+                                <span class="error" ng-show="mad.skill1.$error.required">
+                                    Please enter a skill
+                                </span>
                             </div>
-                        </form>
-                    </div>
-                    <div class="col-md-4">
-                        <form role="form">
+                        </div>
+                        <div class="col-md-4">
                            <div class="form-group">
-                                <input class="form-control" ng-model="celebrity2"
-                                placeholder="Obnoxious Celebrity" type="text">
+                                <input name="celebrity2" class="form-control" ng-model="celebrity2"
+                                placeholder="Obnoxious Celebrity" required/>
+                                <span class="error" ng-show="mad.celebrity2.$error.required">
+                                    Please enter a celebrity name
+                                </span>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" ng-model="number"
-                                placeholder="Huge Number" type="number">
+                                <input name="number" class="form-control" ng-model="number"
+                                placeholder="Huge Number" type="number" required/>
+                                <span class="error" ng-show="mad.number.$error.required">
+                                    Please enter a number
+                                </span>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" ng-model="adjective"
-                                placeholder="Adjective" type="text">
+                                <input name="adjective" class="form-control" ng-model="adjective"
+                                placeholder="Adjective" required/><span class="error" ng-show="mad.adjective.$error.required">
+                                    Please enter an adjective
+                                </span>
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-             <hr>
+                        </div>
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-primary" 
+                            ng-disabled="mad.$invalid"
+                            ng-click="showText()">Generate Mad Libs</button>
+                        </div>
+                    </form><!--Form End-->
+                </div><!--Main Row-->
+            </div><!--Inner Column-->
         
 
-<div class="container">
-    <div class="row">
+<div class="container"><!--Text Container-->
+    <div class="row" ng-hide="hideText"><!--Inner Row-->
         <div class="col-md-12">           
-            <p><strong>{{name}}</strong> was a <strong>{{jtitle}}</strong> who loved technology. Although she loved parts of her job, she absolutely hated  <strong>{{task1}}</strong> and <strong>{{task2}}</strong>. So, <strong>{{name}}</strong> met with her life mentor <strong>{{celebrity}}</strong> who told her to learn how to <strong>{{skill1}}</strong> with Thinkful. Thinkful didn't offer a course on <strong>{{skill1}}</strong> so she studied programming instead. What a great decision! With her new skills, <strong>{{name}}</strong> built a(n) <strong>{{adjective}}</strong> robot named    <strong>{{celebrity2}}</strong> that not only loved <strong>{{task2}}</strong> but did it <strong>{{number}}</strong> faster.</p>
-</div>
-</div>
+            <p><strong>{{malename}}</strong> was a <strong>{{jtitle}}</strong> who loved technology. Although she loved parts of her job, she absolutely hated  <strong>{{task1}}</strong> and <strong>{{task2}}</strong>. So, <strong>{{malename}}</strong> met with her life mentor <strong>{{celebrity}}</strong> who told her to learn how to <strong>{{skill1}}</strong> with Thinkful. Thinkful didn't offer a course on <strong>{{skill1}}</strong> so she studied programming instead. What a great decision! With her new skills, <strong>{{malename}}</strong> built a(n) <strong>{{adjective}}</strong> robot named    <strong>{{celebrity2}}</strong> that not only loved <strong>{{task2}}</strong> but did it <strong>{{number}}</strong> faster.</p>
+            <div class="col-md-12 text-right">
+                <button class="btn btn-primary" 
+                    ng-click="reset()">Reset</button>
+                </div>
+            </div>
+        </div><!--End Inner Row-->
+    </div><!--End Text Container-->
+</div><!--End section Main Controller-->
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js" type="text/javascript"></script>
 <script src="app.js" type="text/javascript"></script>
